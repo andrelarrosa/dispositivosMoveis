@@ -1,3 +1,0 @@
-git config user.email "andre_luiz_2001@hotmail.com";
-git config user.name "andrelarrosa";
-git remote add origin "https://github.com/andrelarrosa/dispositivosMoveis.git"
