@@ -1,8 +1,7 @@
-import 'package:dart_application_1/dart_application_1.dart';
-import 'package:test/test.dart';
+// import 'package:dart_application_1/dart_application_1.dart';
+import 'package:dart_application_1/primeiro.dart' as primeiro;
+// import 'package:test/test.dart';
 
 void main() {
-  test('calculate', () {
-    expect(calculate(), 42);
-  });
+  primeiro.funcao();
 }
