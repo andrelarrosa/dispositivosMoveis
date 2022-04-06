@@ -17,7 +17,7 @@ void solicitarDadosAluno() {
   print("=========================");
   print(
       " R.A: $raEntrada\n Nome: $nomeEntrada \n Idade: $idade \n Serie: $serie");
-  if (idade > 18) {
+  if (idade >= 18) {
     print(" Maioridade: Maior de Idade");
   } else {
     print(" Maioridade: Menor de Idade");
