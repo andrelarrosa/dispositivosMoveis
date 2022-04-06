@@ -117,3 +117,42 @@ void verificarAprovacaoZeroADez() {
     print("Aprovado");
   }
 }
+
+void solicitarDadosTresAlunos() {
+  for (int i = 0; i < 3; i++) {
+    print("Informe o seu R.A");
+    String? raEntrada = stdin.readLineSync();
+    print("Informe o seu nome");
+    String? nomeEntrada = stdin.readLineSync();
+    print("Informe a sua serie");
+    String? serieEntrada = stdin.readLineSync()!;
+  }
+}
+
+void solicitarDadosVariosAlunos() {
+  bool decisao = true;
+  while (decisao) {
+    print("Informe o seu R.A");
+    String? raEntrada = stdin.readLineSync();
+    print("Informe o seu nome");
+    String? nomeEntrada = stdin.readLineSync();
+    print("Informe a sua serie");
+    String? serieEntrada = stdin.readLineSync()!;
+    print("gostaria de informar mais um aluno? (S/N)");
+    String? decisaoEntrada = stdin.readLineSync().toString();
+    decisao = (decisaoEntrada.toLowerCase() == 's') ? false : true;
+  }
+}
+
+void solicitarDadosDuasDisciplinas() {
+  for (int i = 0; i < 2; i++) {
+    print("Informe o ID da disciplina");
+    String? idEntrada = stdin.readLineSync();
+    print("Informe a carga horária da disciplina");
+    String? cargaHorariaEntrada = stdin.readLineSync()!;
+    print("Informe o nome da disciplina");
+    String? nomeDisciplinaEntrada = stdin.readLineSync();
+    print("Informe a serie da disciplina");
+    String? serieEntrada = stdin.readLineSync()!;
+  }
+}
