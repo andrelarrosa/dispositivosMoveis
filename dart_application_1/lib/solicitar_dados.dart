@@ -42,3 +42,78 @@ void solicitarDadosDisciplina() {
       " ID: $idEntrada\n Carga Horaria: $cargaHoraria \n Nome: $nomeDisciplinaEntrada \n Série: $serieEntrada");
   print("=========================");
 }
+
+String verificarAprovacaoPorFaltas(double presencaMinima) {
+  print("Informe o quantitativo de presença:");
+  String? presencaEntrada = stdin.readLineSync()!;
+  double presenca = double.parse(presencaEntrada);
+  if (presencaMinima <= presenca) {
+    return "Aprovado";
+  } else {
+    return "Reprovado por faltas";
+  }
+}
+
+String verificarNotaAcimaDaMedia() {
+  print("Informe sua nota:");
+  String notaEntrada = stdin.readLineSync()!;
+  double nota = double.parse(notaEntrada);
+  if (nota >= 60) {
+    return "Acima da media";
+  } else {
+    return "Abaixo da media";
+  }
+}
+
+void calcularMediaMenorMaior() {
+  print("Informe a 1ª nota:");
+  double nota1 = double.parse(stdin.readLineSync()!);
+  print("Informe a 2ª nota:");
+  double nota2 = double.parse(stdin.readLineSync()!);
+  print("Informe a 3ª nota:");
+  double nota3 = double.parse(stdin.readLineSync()!);
+  double media = (nota1 + nota2 + nota3) / 3;
+
+  if (nota1 >= nota3 && nota1 >= nota2) {
+    print("Sua maior nota é: $nota1\n e sua média é: $media");
+  } else if (nota3 >= nota1 && nota3 >= nota2) {
+    print("Sua maior nota é $nota2\n e sua média é: $media");
+  } else {
+    print("Sua maior nota é $nota3\n e sua média é: $media");
+  }
+}
+
+void verificarAprovacao(double presencaMinima) {
+  print("Informe sua nota:");
+  double nota = double.parse(stdin.readLineSync()!);
+  print("Informe sua frequência:");
+  double frequencia = double.parse(stdin.readLineSync()!);
+  if (nota >= 60 && frequencia >= presencaMinima) {
+    print("Aprovado");
+  } else if (nota <= 60 && frequencia >= presencaMinima) {
+    print("Reprovado por conceito");
+  } else if (nota >= 60 && frequencia <= presencaMinima) {
+    print("Reprovado por faltas");
+  } else {
+    print("Reprovado por faltas e conceito");
+  }
+}
+
+void verificarAprovacaoZeroADez() {
+  print("Informe sua nota:");
+  double nota = double.parse(stdin.readLineSync()!);
+  if (nota < 0 || nota > 10) {
+    print("Você deve preencher com um número de 0 à 10");
+  } else if (nota < 6) {
+    print("Informe sua nota da recuperacao:");
+    double notaRecuperacao = double.parse(stdin.readLineSync()!);
+    double media = (nota + notaRecuperacao) / 2;
+    if (media > 6) {
+      print("Aprovado");
+    } else {
+      print("Reprovado");
+    }
+  } else {
+    print("Aprovado");
+  }
+}
