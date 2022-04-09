@@ -34,12 +34,15 @@ void solicitarDadosDisciplina() {
   String? nomeDisciplinaEntrada = stdin.readLineSync();
   print("Informe a serie da disciplina");
   String? serieEntrada = stdin.readLineSync()!;
+  print("Informe a % de presença e média de aprovação");
+  String? presencaEntrada = stdin.readLineSync()!;
 
   double cargaHoraria = double.parse(cargaHorariaEntrada);
-  double presencaMinima = cargaHoraria * 0.75;
+  double presenca = double.parse(presencaEntrada);
+  double presencaMinima = cargaHoraria * (presenca / 100);
   print("=========================");
   print(
-      " ID: $idEntrada\n Carga Horaria: $cargaHoraria \n Nome: $nomeDisciplinaEntrada \n Série: $serieEntrada");
+      " ID: $idEntrada\n Carga Horaria: $cargaHoraria \n Nome: $nomeDisciplinaEntrada \n Série: $serieEntrada \n Presença Mínima: $presencaMinima");
   print("=========================");
 }
 
@@ -84,7 +87,7 @@ void calcularMediaMenorMaior() {
 }
 
 void verificarAprovacao(double presencaMinima) {
-  print("Informe sua nota:");
+  print("Informe sua média:");
   double nota = double.parse(stdin.readLineSync()!);
   print("Informe sua frequência:");
   double frequencia = double.parse(stdin.readLineSync()!);
@@ -154,5 +157,35 @@ void solicitarDadosDuasDisciplinas() {
     String? nomeDisciplinaEntrada = stdin.readLineSync();
     print("Informe a serie da disciplina");
     String? serieEntrada = stdin.readLineSync()!;
+  }
+}
+
+void solicitarDisciplinas() {
+  bool decisao = true;
+  while (decisao) {
+    print("Informe o ID da disciplina");
+    String? idEntrada = stdin.readLineSync();
+    print("Informe a carga horária da disciplina");
+    String? cargaHorariaEntrada = stdin.readLineSync()!;
+    print("Informe o nome da disciplina");
+    String? nomeDisciplinaEntrada = stdin.readLineSync();
+    print("Informe a serie da disciplina");
+    String? serieEntrada = stdin.readLineSync()!;
+    print("gostaria de informar mais uma disciplina? (S/N)");
+    String? decisaoEntrada = stdin.readLineSync().toString();
+    decisao = (decisaoEntrada.toLowerCase() == 's') ? false : true;
+  }
+}
+
+void verificarAprovacaoAlunos() {
+  bool decisao = true;
+  print("Informe a % de presença e média de aprovação");
+  String? presencaEntrada = stdin.readLineSync()!;
+  double presencaMinima = double.parse(presencaEntrada);
+  while (decisao) {
+    verificarAprovacao(presencaMinima);
+    print("gostaria de informar mais uma disciplina? (S/N)");
+    String? decisaoEntrada = stdin.readLineSync().toString();
+    decisao = (decisaoEntrada.toLowerCase() == 's') ? false : true;
   }
 }
