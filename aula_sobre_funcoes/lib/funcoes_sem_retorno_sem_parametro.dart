@@ -2,11 +2,10 @@ import 'dart:io';
 
 void show() {
   print("Funções sem retorno e sem parâmetro");
-  // verificarAprovacao();
+  verificarAprovacao();
   verificarSalario();
 }
 
-// ---------------------- dá para usar no projeto pessoal ----------------------
 // solicita 2 notas, calcula média e informa se é aprovado ou reprovado
 void verificarAprovacao() {
   print("Informe a primeira nota:");
@@ -36,5 +35,26 @@ void verificarSalario() {
     print("salário positivo");
   } else {
     print("salário negativo");
+  }
+}
+
+// ---------------------- dá para usar no projeto pessoal ----------------------
+void calcularImpostoDeRenda() {
+  print("Informe sua renda: ");
+  double renda = double.parse(stdin.readLineSync()!);
+  if (renda <= 1903.98) {
+    print("Isento");
+  } else if (renda > 1903.98 && renda <= 2866.65) {
+    double valor = renda * 0.075;
+    print(valor);
+  } else if (renda > 2866.65 && renda <= 3751.05) {
+    double valor = renda * 0.15;
+    print(valor);
+  } else if (renda > 3751.05 && renda <= 4664.68) {
+    double valor = renda * 0.225;
+    print(valor);
+  } else if (renda > 4664.68) {
+    double valor = renda * 0.275;
+    print(valor);
   }
 }
