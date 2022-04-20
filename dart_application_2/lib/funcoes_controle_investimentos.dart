@@ -10,20 +10,41 @@ void show() {
   double rendaInicial = double.parse(stdin.readLineSync()!);
   print("informe Juros Aplicados: ");
   double jurosAplicados = double.parse(stdin.readLineSync()!);
-  print(interfaceInvestimentos(opcao, rendaInicial, jurosAplicados));
+  // print(interfaceInvestimentos(opcao, rendaInicial, jurosAplicados));
+  String resultado = "";
+  if (opcao == 1) {
+    resultado = interfaceInvestimentos(
+        rendaInicial,
+        jurosAplicados,
+        (double rendaInicial, double jurosAplicados) =>
+            "A renda mensal será de: ${(rendaInicial * (jurosAplicados / 12)) + rendaInicial}");
+  } else if (opcao == 2) {
+    resultado = interfaceInvestimentos(rendaInicial, jurosAplicados,
+        (double rendaInicial, double jurosAplicados) {
+      double rendaInvestimento = (rendaInicial * jurosAplicados) + rendaInicial;
+      double rendaPoupanca = (rendaInicial * 0.0617) + rendaInicial;
+      return "A diferença para a poupança é: ${rendaInvestimento - rendaPoupanca} reais";
+    });
+  } else if (opcao == 3) {
+    resultado = interfaceInvestimentos(rendaInicial, jurosAplicados,
+        (double taxaInicial, double jurosAplicados) {
+      double investimento = (taxaInicial * jurosAplicados);
+      int count = 1;
+      while (investimento < taxaInicial) {
+        investimento = (investimento * jurosAplicados) + investimento;
+        count++;
+      }
+      return "O ROIC do investimento é: ${count}";
+    });
+  } else {
+    resultado = "Opção Inválida";
+  }
+  print(resultado);
 }
 
 String interfaceInvestimentos(
-    int opcao, double rendaInicial, double jurosAplicados) {
-  if (opcao == 1) {
-    return "A renda mensal será de: ${calcularRendaMensal(rendaInicial, jurosAplicados)}";
-  } else if (opcao == 2) {
-    return "A diferença para a poupança é: ${diferencaJurosPupanca(rendaInicial, jurosAplicados)} reais";
-  } else if (opcao == 3) {
-    return "O ROIC do investimento é: ${tempoDeROIC(rendaInicial, jurosAplicados)}";
-  } else {
-    return "Opção Inválida";
-  }
+    double rendaInicial, double jurosAplicados, Function function) {
+  return function();
 }
 
 double calcularRendaMensal(double rendaInicial, double jurosAplicados) {
