@@ -35,9 +35,7 @@ void show() {
       }
     });
   } else {
-    resultado = interface(nota1, nota2, (double nota1, double nota2) {
-      return "opção inválida";
-    });
+    resultado = "opção inválida";
   }
   print(resultado);
 }

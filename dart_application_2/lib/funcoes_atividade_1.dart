@@ -1,6 +1,6 @@
 import 'dart:io';
 
-  void show() {
+void show() {
   print('''Informe o que deseja fazer: 
       01- Bonificar Funcionário
       02- Descontar Salário do Funcionário
@@ -10,23 +10,39 @@ import 'dart:io';
   double salario = double.parse(stdin.readLineSync()!);
   print("informe o valor da comissao/desconto/bonificação do funcionário:");
   double valor = double.parse(stdin.readLineSync()!);
-  print(interfaceSalario(opcao, salario, valor));
+  String resultado = "";
+  if (opcao == 1) {
+    resultado =
+        interfaceSalario(salario, valor, (double salario, double valorBonus) {
+      double total = salario + valorBonus;
+      return total > 1212
+          ? "total maior do que o salário mínimo"
+          : "total menor do que o salário mínimo";
+    });
+  } else if (opcao == 2) {
+    resultado = interfaceSalario(salario, valor,
+        (double salario, double valorDesconto) {
+      double total = salario - valorDesconto;
+      return total > 0 ? "Total é maior que 0" : "Total é menor que 0";
+    });
+  } else if (opcao == 3) {
+    resultado = interfaceSalario(salario, valor,
+        (double salario, double valorComissao) {
+      if (valorComissao > salario) {
+        valorComissao = valorComissao / 2;
+        return "o valor é: ${salario + valorComissao}";
+      } else {
+        return "O valor é: ${salario + valorComissao}";
+      }
+    });
+  } else {
+    resultado = "opção inválida";
+  }
+  print(resultado);
 }
 
-String interfaceSalario(int opcao, double salario, double valor) {
-  if (opcao == 1) {
-    return bonificarSalarioFuncionario(salario, valor)
-        ? "O total é maior que o salário mínimo"
-        : "O total não é maior que o salário mínimo";
-  } else if (opcao == 2) {
-    return descontarSalarioFuncionario(salario, valor)
-        ? "Total é maior que 0"
-        : "Total é menor que 0";
-  } else if (opcao == 3) {
-    return "O valor total é: ${somarComissao(salario, valor)}";
-  } else {
-    return "Opção inválida";
-  }
+String interfaceSalario(double salario, double valor, Function function) {
+  return function();
 }
 
 bool bonificarSalarioFuncionario(double salario, double valorBonus) {
