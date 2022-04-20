@@ -12,13 +12,12 @@ void show() {
   double valor = double.parse(stdin.readLineSync()!);
   String resultado = "";
   if (opcao == 1) {
-    resultado =
-        interfaceSalario(salario, valor, (double salario, double valorBonus) {
-      double total = salario + valorBonus;
-      return total > 1212
-          ? "total maior do que o salário mínimo"
-          : "total menor do que o salário mínimo";
-    });
+    resultado = interfaceSalario(
+        salario,
+        valor,
+        (double salario, double valorBonus) => (salario + valorBonus) > 1212
+            ? "total maior do que o salário mínimo"
+            : "total menor do que o salário mínimo");
   } else if (opcao == 2) {
     resultado = interfaceSalario(salario, valor,
         (double salario, double valorDesconto) {

@@ -19,13 +19,12 @@ void show() {
       if (media >= 6) {
         return "Aprovado";
       } else {
-        return "Reprovad0";
+        return "Reprovado";
       }
     });
   } else if (opcao == 2) {
-    resultado = interface(nota1, nota2, (double nota1, double nota2) {
-      return "A média é ${(nota1 + nota2) / 2}";
-    });
+    resultado = interface(nota1, nota2,
+        (double nota1, double nota2) => "A média é ${(nota1 + nota2) / 2}");
   } else if (opcao == 3) {
     resultado = interface(nota1, nota2, (double nota1, double nota2) {
       if (nota1 > nota2) {
