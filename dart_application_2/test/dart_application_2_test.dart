@@ -5,7 +5,7 @@ import 'package:dart_application_2/funcoes_controle_investimentos.dart'
 import 'package:test/test.dart';
 
 void main() {
-  // funcoes.show();
+  funcoes.show();
   // funcoesSalario.show();
-  funcoesInvestimento.show();
+  // funcoesInvestimento.show();
 }

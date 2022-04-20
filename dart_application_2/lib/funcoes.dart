@@ -12,19 +12,38 @@ void show() {
   double nota1 = double.parse(stdin.readLineSync()!);
   print("informe a segunda nota");
   double nota2 = double.parse(stdin.readLineSync()!);
-  print(interface(opcao, nota1, nota2));
+  String resultado = '';
+  if (opcao == 1) {
+    resultado = interface(nota1, nota2, (double nota1, double nota2) {
+      double media = (nota1 + nota1) / 2;
+      if (media >= 6) {
+        return "Aprovado";
+      } else {
+        return "Reprovad0";
+      }
+    });
+  } else if (opcao == 2) {
+    resultado = interface(nota1, nota2, (double nota1, double nota2) {
+      return "A média é ${(nota1 + nota2) / 2}";
+    });
+  } else if (opcao == 3) {
+    resultado = interface(nota1, nota2, (double nota1, double nota2) {
+      if (nota1 > nota2) {
+        return "A nota mais alta é: ${nota1}";
+      } else {
+        return "A nota mais alta é: ${nota2}";
+      }
+    });
+  } else {
+    resultado = interface(nota1, nota2, (double nota1, double nota2) {
+      return "opção inválida";
+    });
+  }
+  print(resultado);
 }
 
-String interface(int opcao, double nota1, double nota2) {
-  if (opcao == 1) {
-    return verificarAprovacao(nota1, nota2);
-  } else if (opcao == 2) {
-    return "A média é: ${calcularMedia(nota1, nota2)}";
-  } else if (opcao == 3) {
-    return "A maior nota é: ${maiorNota(nota1, nota2)}";
-  } else {
-    return "Opção inválida";
-  }
+String interface(double nota1, double nota2, Function funcao) {
+  return funcao(nota1, nota2);
 }
 
 String verificarAprovacao(double nota1, double nota2) {
