@@ -6,6 +6,6 @@ import 'package:test/test.dart';
 
 void main() {
   funcoes.show();
-  // funcoesSalario.show();
-  // funcoesInvestimento.show();
+  funcoesSalario.show();
+  funcoesInvestimento.show();
 }
