@@ -44,27 +44,30 @@ String interfaceSalario(double salario, double valor, Function function) {
   return function();
 }
 
-bool bonificarSalarioFuncionario(double salario, {double valorBonus = 0}) {
-  double total = salario + valorBonus;
-  return total >= 1212;
-}
-
-bool descontarSalarioFuncionario(double salario, [double valorDesconto = 0]) {
-  double total = salario - valorDesconto;
-  return total > 0;
-}
-
-double somarComissao(
-    {required double salario,
-    required double valorComissao,
-    double limiteBonificacao = 0.5}) {
+double bonificarSalarioFuncionario(double salario, double valorBonus,
+    {double limiteBonificacao = 0.5}) {
   double limite = salario * limiteBonificacao;
-  if (valorComissao > limite) {
-    valorComissao = valorComissao / 2;
-    return salario + valorComissao;
+  if (valorBonus > limite) {
+    valorBonus = valorBonus / 2;
+    return salario + valorBonus;
   } else {
-    return salario + valorComissao;
+    return salario + valorBonus;
   }
+}
+
+double descontarSalarioFuncionario(double salario, double valorDesconto,
+    [double limiteDesconto = 0.5]) {
+  double limite = salario * limiteDesconto;
+  if (valorDesconto > limite) {
+    valorDesconto = valorDesconto / 2;
+    return salario - valorDesconto;
+  } else {
+    return salario - valorDesconto;
+  }
+}
+
+double somarComissao({required double salario, required double valorComissao}) {
+  return salario + valorComissao;
 }
 
 /*
