@@ -48,6 +48,7 @@ void main() {
       print("menor que 15");
     }
   });
+
   numbers.forEach((int numero) {
     if (numero > 15) {
       print(numero / 2);
