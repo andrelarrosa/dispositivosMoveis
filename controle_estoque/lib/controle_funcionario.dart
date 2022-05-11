@@ -12,18 +12,13 @@ void show() {
   double valor = double.parse(stdin.readLineSync()!);
   String resultado = "";
   if (opcao == 1) {
-    resultado = interfaceSalario(
-        salario,
-        valor,
-        (double salario, double valorBonus) => (salario + valorBonus) > 1212
-            ? "total maior do que o salário mínimo"
-            : "total menor do que o salário mínimo");
+    resultado = bonificarSalarioFuncionario(salario, valor) > 1212
+        ? "maior que salario mínimo"
+        : "menor que salario mínimo";
   } else if (opcao == 2) {
-    resultado = interfaceSalario(salario, valor,
-        (double salario, double valorDesconto) {
-      double total = salario - valorDesconto;
-      return total > 0 ? "Total é maior que 0" : "Total é menor que 0";
-    });
+    resultado = descontarSalarioFuncionario(salario, valor) > 0
+        ? "Total é maior que 0"
+        : "Total é menor que 0";
   } else if (opcao == 3) {
     resultado = interfaceSalario(salario, valor,
         (double salario, double valorComissao) {
@@ -47,6 +42,9 @@ String interfaceSalario(double salario, double valor, Function function) {
 double bonificarSalarioFuncionario(double salario, double valorBonus,
     {double limiteBonificacao = 0.5}) {
   double limite = salario * limiteBonificacao;
+  if (salario < 0 || valorBonus < 0) {
+    throw Exception("O salário e valor de bônus tem que ser positivo");
+  }
   if (valorBonus > limite) {
     valorBonus = valorBonus / 2;
     return salario + valorBonus;
@@ -58,6 +56,9 @@ double bonificarSalarioFuncionario(double salario, double valorBonus,
 double descontarSalarioFuncionario(double salario, double valorDesconto,
     [double limiteDesconto = 0.5]) {
   double limite = salario * limiteDesconto;
+  if (salario < 0 || valorDesconto < 0) {
+    throw Exception("O salário e valor de bônus tem que ser positivo");
+  }
   if (valorDesconto > limite) {
     valorDesconto = valorDesconto / 2;
     return salario - valorDesconto;
@@ -67,7 +68,13 @@ double descontarSalarioFuncionario(double salario, double valorDesconto,
 }
 
 double somarComissao({required double salario, required double valorComissao}) {
-  return salario + valorComissao;
+  try {
+    double soma = salario + valorComissao;
+    return soma;
+  } catch (e) {
+    double soma = 0;
+    return soma;
+  }
 }
 
 /*
