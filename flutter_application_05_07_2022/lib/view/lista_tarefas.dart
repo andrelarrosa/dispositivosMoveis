@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_05_07_2022/view/tarefa_form.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ListaTarefas extends StatelessWidget {
   Future<List<Map<String, Object?>>> buscarDados() async {
-    String caminho = join(await getDatabasesPath(), "banco.db");
-    deleteDatabase(caminho);
+    String caminho = join(await getDatabasesPath(), "banco1.db");
     Database banco = await openDatabase(
       caminho,
       version: 1,
@@ -63,6 +63,35 @@ CREATE TABLE tarefa(
                 return ListTile(
                   title: Text(tarefa['nome'].toString()),
                   subtitle: Text(tarefa['descricao'].toString()),
+                  trailing: ElevatedButton(
+                    child: Icon(Icons.delete),
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: Text("Tem certeza que deseja excluir?"),
+                              actions: [
+                                ElevatedButton(
+                                  child: Text("Sim"),
+                                  onPressed: () {
+                                    TarefaForm form = new TarefaForm();
+                                    form.excluir(
+                                        int.parse(tarefa['id'].toString()));
+                                    Navigator.pushNamed(context, '/');
+                                  },
+                                ),
+                                ElevatedButton(
+                                  child: Text("Não"),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/');
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                  ),
                 );
               });
         },
