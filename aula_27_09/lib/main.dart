@@ -1,7 +1,17 @@
+import 'package:aula_27_09/cartao_adaptativo.dart';
+import 'package:aula_27_09/cartao_paisagem.dart';
+import 'package:aula_27_09/cartao_retrato.dart';
+import 'package:aula_27_09/view/cartao_responsivo.dart';
 import 'package:aula_27_09/view/especifico/meu_avatar.dart';
 import 'package:aula_27_09/view/usuario_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+//   runApp(const MyApp());
+// }
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       routes: {
-        "/": (context) => Home(),
+        "/": (context) => CartaoResponsivo(),
       },
     );
   }
